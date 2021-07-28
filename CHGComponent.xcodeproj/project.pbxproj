@@ -16,6 +16,7 @@
 		857169BF26B0F73200606170 /* Intent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857169BC26B0F73200606170 /* Intent.swift */; };
 		857169C026B0F73200606170 /* OpenBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857169BD26B0F73200606170 /* OpenBase.swift */; };
 		857169C126B0F73200606170 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857169BE26B0F73200606170 /* Response.swift */; };
+		857169C326B1012200606170 /* UIViewController+OpenBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857169C226B1012200606170 /* UIViewController+OpenBase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		857169BC26B0F73200606170 /* Intent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Intent.swift; sourceTree = "<group>"; };
 		857169BD26B0F73200606170 /* OpenBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenBase.swift; sourceTree = "<group>"; };
 		857169BE26B0F73200606170 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		857169C226B1012200606170 /* UIViewController+OpenBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+OpenBase.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				857169BC26B0F73200606170 /* Intent.swift */,
 				857169BD26B0F73200606170 /* OpenBase.swift */,
 				857169BE26B0F73200606170 /* Response.swift */,
+				857169C226B1012200606170 /* UIViewController+OpenBase.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -156,6 +159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				857169C026B0F73200606170 /* OpenBase.swift in Sources */,
+				857169C326B1012200606170 /* UIViewController+OpenBase.swift in Sources */,
 				857169AC26B0F6B800606170 /* ViewController.swift in Sources */,
 				857169BF26B0F73200606170 /* Intent.swift in Sources */,
 				857169A826B0F6B800606170 /* AppDelegate.swift in Sources */,
