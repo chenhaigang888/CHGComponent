@@ -6,4 +6,4 @@ ios项目组件化基础框架
 
 ### Installation with CocoaPods
 
-> pod 'CHGAdapter_swift', '~> 0.7.8'
+> pod 'CHGComponent', '~> 0.0.1'
