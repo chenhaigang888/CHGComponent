@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "CHGComponent"
-  spec.version      = "0.0.1"
+  spec.version      = "0.0.2dev"
   spec.summary      = "CHGComponent是一个组件化基础框架"
 
   # This description is used to generate tags and improve search results.
