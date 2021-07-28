@@ -19,7 +19,10 @@ public protocol OpenBase {
     func setResult<ResultData: Codable>(resultCode: Int?, resultData: ResultData?)
     
     /// 请求一个目标对象
-    func request<Result: Codable>(with targetIntent: Intent, resultType: Result.Type?, for responseBlock: ResponseBlock<Result>?)
+    func request(with targetIntent: Intent)
+    
+    /// 请求一个目标对象
+    func request<Result: Codable>(with targetIntent: Intent, resultType: Result.Type, for responseBlock: ResponseBlock<Result>?)
 
 }
 
@@ -27,15 +30,8 @@ public protocol OpenBase {
 private var intentKey: Void?
 
 extension OpenBase {
-    public func request<Result: Codable>(with targetIntent: Intent, resultType: Result.Type? = nil, for responseBlock: ResponseBlock<Result>? = nil) {
-        targetIntent.responseBlock = {(response)in
-            var result:Result? = nil
-            if let data = response.resultData, let resultType = resultType {
-                result = try! JSONDecoder().decode(resultType.self, from: data)
-            }
-            responseBlock?(Response(requestCode: response.requestCode, resultCode: response.resultCode, resultData: result))
-        }
-        
+    
+    public func request(with targetIntent: Intent){
         if targetIntent.parent == nil {
             targetIntent.parent = self
         }
@@ -67,7 +63,17 @@ extension OpenBase {
             print("Intent的参数target不能为空")
             targetIntent.responseBlock?(Response(requestCode: targetIntent.requestCode ?? 0, resultCode: ErrResultCode.targetNotFound.rawValue, resultData: nil))
         }
-        
+    }
+    
+    public func request<Result: Codable>(with targetIntent: Intent, resultType: Result.Type, for responseBlock: ResponseBlock<Result>? = nil) {
+        targetIntent.responseBlock = {(response)in
+            var result:Result? = nil
+            if let data = response.resultData {
+                result = try! JSONDecoder().decode(resultType.self, from: data)
+            }
+            responseBlock?(Response(requestCode: response.requestCode, resultCode: response.resultCode, resultData: result))
+        }
+        request(with: targetIntent)
     }
     
     public var intent: Intent? {

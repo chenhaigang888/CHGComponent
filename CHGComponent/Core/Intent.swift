@@ -23,14 +23,30 @@ open class Intent {
                 method: String? = nil,
                 requestCode: Int? = 0,
                 openWay: OpenWay? = .present,
-                animated: Bool? = true,
-                responseBlock: ResponseBlock? = nil) {
+                animated: Bool? = true) {
         self.parent = parent
         self.method = method
         self.requestCode = requestCode
         self.openWay = openWay
         self.animated = animated
-        self.responseBlock = responseBlock
+        if let cls = NSClassFromString(targetClass) {
+            self.target = cls
+        }
+    }
+    
+    public init<Params: Codable>(parent: OpenBase? = nil,
+                targetClass: String,
+                method: String? = nil,
+                params: Params,
+                requestCode: Int? = 0,
+                openWay: OpenWay? = .present,
+                animated: Bool? = true) {
+        self.parent = parent
+        self.method = method
+        setParams(params: params)
+        self.requestCode = requestCode
+        self.openWay = openWay
+        self.animated = animated
         if let cls = NSClassFromString(targetClass) {
             self.target = cls
         }
