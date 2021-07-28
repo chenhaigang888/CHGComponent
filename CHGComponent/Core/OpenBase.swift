@@ -19,7 +19,7 @@ public protocol OpenBase {
     func setResult<ResultData: Codable>(resultCode: Int?, resultData: ResultData?)
     
     /// 请求一个目标对象
-    func request<Result: Codable>(with targetIntent: Intent, resultType: Result.Type, for responseBlock: ResponseBlock<Result>?)
+    func request<Result: Codable>(with targetIntent: Intent, resultType: Result.Type?, for responseBlock: ResponseBlock<Result>?)
 
 }
 
@@ -27,10 +27,10 @@ public protocol OpenBase {
 private var intentKey: Void?
 
 extension OpenBase {
-    public func request<Result: Codable>(with targetIntent: Intent, resultType: Result.Type, for responseBlock: ResponseBlock<Result>?) {
+    public func request<Result: Codable>(with targetIntent: Intent, resultType: Result.Type? = nil, for responseBlock: ResponseBlock<Result>? = nil) {
         targetIntent.responseBlock = {(response)in
             var result:Result? = nil
-            if let data = response.resultData {
+            if let data = response.resultData, let resultType = resultType {
                 result = try! JSONDecoder().decode(resultType.self, from: data)
             }
             responseBlock?(Response(requestCode: response.requestCode, resultCode: response.resultCode, resultData: result))
@@ -41,14 +41,13 @@ extension OpenBase {
         }
         
         if let parentVC = targetIntent.parent as? UIViewController,
-           let target = targetIntent.target as? UIViewController.Type,
-           var targetObj = target.init() as? OpenBase,
-           let subVC = targetObj as? UIViewController {
+           let target = targetIntent.target as? UIViewController.Type {
+            var targetObj = target.init()
             targetObj.intent = targetIntent
             if targetIntent.openWay == .push {
-                parentVC.navigationController?.pushViewController(subVC, animated: targetIntent.animated ?? true)
+                parentVC.navigationController?.pushViewController(targetObj, animated: targetIntent.animated ?? true)
             } else if targetIntent.openWay == .present {
-                parentVC.present(subVC, animated: targetIntent.animated ?? true, completion: nil)
+                parentVC.present(targetObj, animated: targetIntent.animated ?? true, completion: nil)
             }
         } else if let target = targetIntent.target as? NSObject.Type, var targetObj = target.init() as? OpenBase {
             targetObj.intent = targetIntent
