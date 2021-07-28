@@ -26,7 +26,7 @@ Pod::Spec.new do |spec|
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   spec.description  = "CHGComponent是一个组件化基础框架"
 
-  spec.homepage     = "http://EXAMPLE/CHGComponent"
+  spec.homepage     = "https://github.com/chenhaigang888/CHGComponent"
   # spec.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -78,7 +78,7 @@ Pod::Spec.new do |spec|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  spec.source       = { :git => "http://github.com/CHGComponent.git", :tag => "#{spec.version}" }
+  spec.source       = { :git => "https://github.com/chenhaigang888/CHGComponent", :tag => "#{spec.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
