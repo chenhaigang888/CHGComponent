@@ -6,4 +6,4 @@ ios项目组件化基础框架
 
 ### Installation with CocoaPods
 
-> pod 'CHGComponent', '~> 0.0.1'
+> pod 'CHGComponent', '~> 0.0.2dev'
